@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ee.taltech.inbankbackend.endpoint.DecisionEngineControllerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-04-15T12:44:32" hostname="Ukus-MBP.lan" time="0.123">
+  <properties/>
+  <testcase name="givenNoValidLoan_whenRequestDecision_thenReturnsBadRequest()" classname="ee.taltech.inbankbackend.endpoint.DecisionEngineControllerTest" time="0.098"/>
+  <testcase name="givenInvalidLoanAmount_whenRequestDecision_thenReturnsBadRequest()" classname="ee.taltech.inbankbackend.endpoint.DecisionEngineControllerTest" time="0.005"/>
+  <testcase name="givenInvalidLoanPeriod_whenRequestDecision_thenReturnsBadRequest()" classname="ee.taltech.inbankbackend.endpoint.DecisionEngineControllerTest" time="0.004"/>
+  <testcase name="givenValidRequest_whenRequestDecision_thenReturnsExpectedResponse()" classname="ee.taltech.inbankbackend.endpoint.DecisionEngineControllerTest" time="0.004"/>
+  <testcase name="givenUnexpectedError_whenRequestDecision_thenReturnsInternalServerError()" classname="ee.taltech.inbankbackend.endpoint.DecisionEngineControllerTest" time="0.004"/>
+  <testcase name="givenInvalidPersonalCode_whenRequestDecision_thenReturnsBadRequest()" classname="ee.taltech.inbankbackend.endpoint.DecisionEngineControllerTest" time="0.003"/>
+  <system-out><![CDATA[2024-04-15T15:44:32.316+03:00  INFO 27259 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [ee.taltech.inbankbackend.endpoint.DecisionEngineControllerTest]: DecisionEngineControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-04-15T15:44:32.323+03:00  INFO 27259 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration ee.taltech.inbankbackend.InbankBackendApplication for test class ee.taltech.inbankbackend.endpoint.DecisionEngineControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.4)
+
+2024-04-15T15:44:32.333+03:00  INFO 27259 --- [    Test worker] e.t.i.e.DecisionEngineControllerTest     : Starting DecisionEngineControllerTest using Java 17.0.10 with PID 27259 (started by root in /Users/ukmets/dev/InbankDecisionEngine/intern-decision-engine-backend)
+2024-04-15T15:44:32.333+03:00  INFO 27259 --- [    Test worker] e.t.i.e.DecisionEngineControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2024-04-15T15:44:32.467+03:00  INFO 27259 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-04-15T15:44:32.467+03:00  INFO 27259 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-04-15T15:44:32.469+03:00  INFO 27259 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2024-04-15T15:44:32.472+03:00  INFO 27259 --- [    Test worker] e.t.i.e.DecisionEngineControllerTest     : Started DecisionEngineControllerTest in 0.146 seconds (process running for 1.298)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
