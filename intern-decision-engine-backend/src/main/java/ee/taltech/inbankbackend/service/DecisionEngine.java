@@ -1,3 +1,4 @@
+
 package ee.taltech.inbankbackend.service;
 
 import com.github.vladislavgoltjajev.personalcode.locale.estonia.EstonianPersonalCodeValidator;
@@ -35,7 +36,6 @@ public class DecisionEngine {
      * @throws InvalidLoanPeriodException If the requested loan period is invalid
      * @throws NoValidLoanException If there is no valid loan found for the given ID code, loan amount and loan period
      */
-
     public Decision calculateApprovedLoan(String personalCode, Long loanAmount, int loanPeriod)
             throws InvalidPersonalCodeException, InvalidLoanAmountException, InvalidLoanPeriodException,
             NoValidLoanException {
@@ -45,24 +45,26 @@ public class DecisionEngine {
             return new Decision(null, null, e.getMessage());
         }
 
+        int outputLoanAmount;
         creditModifier = getCreditModifier(personalCode);
 
         if (creditModifier == 0) {
-            throw new NoValidLoanException("No valid loan found due to debt!");
-        }
-
-        int outputLoanAmount = highestValidLoanAmount(loanAmount, loanPeriod);
-
-        if (outputLoanAmount == 0) {
             throw new NoValidLoanException("No valid loan found!");
         }
 
-        while (outputLoanAmount < DecisionEngineConstants.MINIMUM_LOAN_AMOUNT) {
-            loanPeriod++;
-            if (loanPeriod > DecisionEngineConstants.MAXIMUM_LOAN_PERIOD) {
-                throw new NoValidLoanException("No valid loan found within maximum loan period!");
+        float creditScore = 0;
+        while (true) {
+            creditScore = (float)creditModifier / (float)highestValidLoanAmount(loanPeriod) * loanPeriod;
+            if (highestValidLoanAmount(loanPeriod) >= DecisionEngineConstants.MINIMUM_LOAN_AMOUNT && creditScore >= 1) {
+                break;
             }
-            outputLoanAmount = highestValidLoanAmount(loanAmount, loanPeriod);
+            loanPeriod++;
+        }
+
+        if (loanPeriod <= DecisionEngineConstants.MAXIMUM_LOAN_PERIOD) {
+            outputLoanAmount = Math.min(DecisionEngineConstants.MAXIMUM_LOAN_AMOUNT, highestValidLoanAmount(loanPeriod));
+        } else {
+            throw new NoValidLoanException("No valid loan found!");
         }
 
         return new Decision(outputLoanAmount, loanPeriod, null);
@@ -70,16 +72,11 @@ public class DecisionEngine {
 
     /**
      * Calculates the largest valid loan for the current credit modifier and loan period.
-     * @param loanAmount Requested loan amount
-     * @param loanPeriod Loan period
+     *
      * @return Largest valid loan amount
      */
-    private int highestValidLoanAmount(Long loanAmount, int loanPeriod) {
-        double creditScore = (double) creditModifier / loanAmount * loanPeriod;
-        if (creditScore >= 1) {
-            return Math.min(loanAmount.intValue(), DecisionEngineConstants.MAXIMUM_LOAN_AMOUNT);
-        }
-        return 0;
+    private int highestValidLoanAmount(int loanPeriod) {
+        return creditModifier * loanPeriod;
     }
 
     /**
