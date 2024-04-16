@@ -16,9 +16,8 @@
 
 ### Proposed code changes
 ```java
-float creditScore = 0;
 while (true) {
-    creditScore = (float)creditModifier / (float)highestValidLoanAmount(loanPeriod) * loanPeriod;
+    float creditScore = (float)creditModifier / (float)highestValidLoanAmount(loanPeriod) * loanPeriod;
     if (highestValidLoanAmount(loanPeriod) >= DecisionEngineConstants.MINIMUM_LOAN_AMOUNT && creditScore >= 1) {
         break;
     }

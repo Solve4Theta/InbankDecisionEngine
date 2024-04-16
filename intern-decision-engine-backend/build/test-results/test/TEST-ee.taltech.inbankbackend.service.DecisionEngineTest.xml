@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ee.taltech.inbankbackend.service.DecisionEngineTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2024-04-15T20:47:11" hostname="Ukus-MBP.lan" time="0.187">
+<testsuite name="ee.taltech.inbankbackend.service.DecisionEngineTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2024-04-16T20:47:41" hostname="Ukus-MBP.lan" time="0.012">
   <properties/>
-  <testcase name="testSegment3PersonalCode()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.176"/>
-  <testcase name="testInvalidPersonalCode()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.002"/>
-  <testcase name="testInvalidLoanAmount()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.001"/>
-  <testcase name="testSegment2PersonalCode()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.001"/>
+  <testcase name="testSegment3PersonalCode()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.005"/>
+  <testcase name="testInvalidPersonalCode()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.0"/>
+  <testcase name="testInvalidLoanAmount()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.0"/>
+  <testcase name="testSegment2PersonalCode()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.0"/>
   <testcase name="testFindSuitableLoanPeriod()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.001"/>
   <testcase name="testSegment1PersonalCode()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.001"/>
   <testcase name="testInvalidLoanPeriod()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.001"/>
-  <testcase name="testDebtorPersonalCode()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.0"/>
-  <testcase name="testNoValidLoanFound()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.001"/>
+  <testcase name="testDebtorPersonalCode()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.001"/>
+  <testcase name="testNoValidLoanFound()" classname="ee.taltech.inbankbackend.service.DecisionEngineTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
