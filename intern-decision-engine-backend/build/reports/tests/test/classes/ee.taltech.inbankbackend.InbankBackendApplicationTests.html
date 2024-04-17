@@ -87,16 +87,16 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>23:47:40.247 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [InbankBackendApplicationTests]: using SpringBootContextLoader
-23:47:40.250 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [ee.taltech.inbankbackend.InbankBackendApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-23:47:40.250 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [ee.taltech.inbankbackend.InbankBackendApplicationTests]: InbankBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-23:47:40.259 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using ContextCustomizers for test class [InbankBackendApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
-23:47:40.289 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/ukmets/dev/InbankDecisionEngine/intern-decision-engine-backend/build/classes/java/main/ee/taltech/inbankbackend/InbankBackendApplication.class]
-23:47:40.290 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration ee.taltech.inbankbackend.InbankBackendApplication for test class ee.taltech.inbankbackend.InbankBackendApplicationTests
-23:47:40.323 [Test worker] DEBUG org.springframework.test.context.util.TestContextSpringFactoriesUtils - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom TestExecutionListener classes or make the default TestExecutionListener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
-23:47:40.324 [Test worker] DEBUG org.springframework.test.context.util.TestContextSpringFactoriesUtils - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom TestExecutionListener classes or make the default TestExecutionListener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
-23:47:40.325 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners for test class [InbankBackendApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-23:47:40.325 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [InbankBackendApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+<pre>16:14:17.215 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [InbankBackendApplicationTests]: using SpringBootContextLoader
+16:14:17.218 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [ee.taltech.inbankbackend.InbankBackendApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+16:14:17.218 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [ee.taltech.inbankbackend.InbankBackendApplicationTests]: InbankBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:14:17.228 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using ContextCustomizers for test class [InbankBackendApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+16:14:17.253 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/ukmets/dev/InbankDecisionEngine/intern-decision-engine-backend/build/classes/java/main/ee/taltech/inbankbackend/InbankBackendApplication.class]
+16:14:17.254 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration ee.taltech.inbankbackend.InbankBackendApplication for test class ee.taltech.inbankbackend.InbankBackendApplicationTests
+16:14:17.285 [Test worker] DEBUG org.springframework.test.context.util.TestContextSpringFactoriesUtils - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom TestExecutionListener classes or make the default TestExecutionListener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+16:14:17.286 [Test worker] DEBUG org.springframework.test.context.util.TestContextSpringFactoriesUtils - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom TestExecutionListener classes or make the default TestExecutionListener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+16:14:17.287 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners for test class [InbankBackendApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+16:14:17.287 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [InbankBackendApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -106,9 +106,9 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.4)
 
-2024-04-16T23:47:40.427+03:00  INFO 38491 --- [    Test worker] e.t.i.InbankBackendApplicationTests      : Starting InbankBackendApplicationTests using Java 17.0.10 with PID 38491 (started by root in /Users/ukmets/dev/InbankDecisionEngine/intern-decision-engine-backend)
-2024-04-16T23:47:40.428+03:00  INFO 38491 --- [    Test worker] e.t.i.InbankBackendApplicationTests      : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2024-04-16T23:47:40.833+03:00  INFO 38491 --- [    Test worker] e.t.i.InbankBackendApplicationTests      : Started InbankBackendApplicationTests in 0.488 seconds (process running for 0.937)
+2024-04-17T16:14:17.396+03:00  INFO 41429 --- [    Test worker] e.t.i.InbankBackendApplicationTests      : Starting InbankBackendApplicationTests using Java 17.0.10 with PID 41429 (started by root in /Users/ukmets/dev/InbankDecisionEngine/intern-decision-engine-backend)
+2024-04-17T16:14:17.396+03:00  INFO 41429 --- [    Test worker] e.t.i.InbankBackendApplicationTests      : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2024-04-17T16:14:17.801+03:00  INFO 41429 --- [    Test worker] e.t.i.InbankBackendApplicationTests      : Started InbankBackendApplicationTests in 0.495 seconds (process running for 0.93)
 </pre>
 </span>
 </div>
@@ -120,7 +120,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.7</a> at Apr 16, 2024, 11:47:41 PM</p>
+<a href="http://www.gradle.org">Gradle 8.7</a> at Apr 17, 2024, 4:14:18 PM</p>
 </div>
 </div>
 </body>

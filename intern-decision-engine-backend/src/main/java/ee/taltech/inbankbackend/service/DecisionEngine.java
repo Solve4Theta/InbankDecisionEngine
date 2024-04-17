@@ -9,11 +9,6 @@ import ee.taltech.inbankbackend.exceptions.InvalidPersonalCodeException;
 import ee.taltech.inbankbackend.exceptions.NoValidLoanException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.Period;
-
 /**
  * A service class that provides a method for calculating an approved loan amount and period for a customer.
  * The loan amount is calculated based on the customer's credit modifier,
@@ -25,7 +20,6 @@ public class DecisionEngine {
     // Used to check for the validity of the presented ID code.
     private final EstonianPersonalCodeValidator validator = new EstonianPersonalCodeValidator();
     private int creditModifier = 0;
-    private int firstDigit = 0;
 
     /**
      * Calculates the maximum loan amount and period for the customer based on their ID code,
@@ -51,20 +45,9 @@ public class DecisionEngine {
             return new Decision(null, null, e.getMessage());
         }
 
-        LocalDate birthdate = parseBirthDate(personalCode, firstDigit);
-        LocalDateTime nowInEstonia = LocalDateTime.now(ZoneId.of("Europe/Tallinn"));
-        LocalDate todayInEstonia = nowInEstonia.toLocalDate();
-        Period age = Period.between(birthdate, todayInEstonia);
-
-        if (age.getYears() < 18) {
-            return new Decision(null, null, "Loan denied: Age falls below minimum allowed limit.");
-        }
-
-        boolean isMale = isMale(personalCode);
-        boolean maxAgeLimitResult = checkMaxAgeLimit(isMale, age);
-
-        if (!maxAgeLimitResult) {
-            return new Decision(null, null, "Loan denied: Age exceeds maximum allowed limit.");
+        AgeVerification checkAge = new AgeVerification();
+        if (!checkAge.isEligibleByAge(personalCode)) {
+            return new Decision(null, null, "Loan denied: User must is outside of age limits.");
         }
 
         int outputLoanAmount = 0;
@@ -74,81 +57,17 @@ public class DecisionEngine {
             throw new NoValidLoanException("No valid loan found!");
         }
 
-        while (true) {
+        while (loanPeriod <= DecisionEngineConstants.MAXIMUM_LOAN_PERIOD) {
             float creditScore = (float)creditModifier / (float)highestValidLoanAmount(loanPeriod) * loanPeriod;
             if (highestValidLoanAmount(loanPeriod) >= DecisionEngineConstants.MINIMUM_LOAN_AMOUNT && creditScore >= 1) {
-                break;
+                outputLoanAmount = Math.min(DecisionEngineConstants.MAXIMUM_LOAN_AMOUNT, highestValidLoanAmount(loanPeriod));
+                return new Decision(outputLoanAmount, loanPeriod, null);
             }
             loanPeriod++;
         }
 
-        if (loanPeriod <= DecisionEngineConstants.MAXIMUM_LOAN_PERIOD) {
-            outputLoanAmount = Math.min(DecisionEngineConstants.MAXIMUM_LOAN_AMOUNT, highestValidLoanAmount(loanPeriod));
-        } else {
-            throw new NoValidLoanException("No valid loan found!");
-        }
-
-        return new Decision(outputLoanAmount, loanPeriod, null);
-    }
-
-    /**
-     * Checks if user is male
-     *
-     * @param personalCode Used to identify the gender of the user
-     * @return Boolean which is true if user is male and vice versa
-     */
-    private boolean isMale(String personalCode) {
-        int genderCode = Integer.parseInt(personalCode.substring(0, 1));
-        return genderCode % 2 != 0;
-    }
-
-    /**
-     * Checks if user is over maximum allowed age limit
-     *
-     * @param isMale Used to determine the gender of the user
-     * @param userAge Used to determine if user is of eligible age
-     * @return Boolean which either approves or denies the user age
-     */
-    private boolean checkMaxAgeLimit(boolean isMale, Period userAge) {
-        String genderId= isMale ? "_M" : "_W";
-        boolean approveResult = true;
-
-        for (String key : DecisionEngineConstants.LIFE_EXPECTANCIES.keySet()) {
-            if (key.endsWith(genderId)) {
-                int lifeExpectancy = DecisionEngineConstants.LIFE_EXPECTANCIES.get(key);
-                int adjustedLifeExpectancy = lifeExpectancy - (DecisionEngineConstants.MAXIMUM_LOAN_PERIOD / 12);
-                if (adjustedLifeExpectancy < userAge.getYears()) {
-                    approveResult = false;
-                }
-            }
-        }
-        return approveResult;
-    }
-
-
-    /**
-     * Parses the id code of the user int LocalDate format.
-     *
-     * @param idCode The identification code of the user.
-     * @return user birthdate.
-     */
-    public static LocalDate parseBirthDate(String idCode, int firstDigit) {
-        firstDigit = Integer.parseInt(idCode.substring(0, 1));
-        int century;
-        switch (firstDigit) {
-            case 1: case 2: century = 1800; break;
-            case 3: case 4: century = 1900; break;
-            case 5: case 6: century = 2000; break;
-            // Should not get here, since the id code is already validated
-            default: century = 2000; break;
-        }
-
-        int year = century + Integer.parseInt(idCode.substring(1, 3));
-        int month = Integer.parseInt(idCode.substring(3, 5));
-        int day = Integer.parseInt(idCode.substring(5, 7));
-
-        LocalDate birthDate = LocalDate.of(year, month, day);
-        return birthDate;
+        // If program flow gets here, we cannot provide a loan for the user
+        throw new NoValidLoanException("No valid loan found!");
     }
 
     /**
